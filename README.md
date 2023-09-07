@@ -34,7 +34,7 @@ edge-detection-assignment/
 ```
 │
 ├── code/             # Code for edge detection
-│   ├── edge_detection.py
+│   ├── edge_detection.ipynb
 │   └── ...
 │
 ├── images/           # Natural images (add your own or use provided samples)
