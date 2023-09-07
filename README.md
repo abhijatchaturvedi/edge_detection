@@ -31,6 +31,7 @@ git clone https://github.com/yourusername/edge_detection.git
 The project directory structure is as follows:
 
 edge-detection-assignment/
+```
 │
 ├── code/             # Code for edge detection
 │   ├── edge_detection.py
@@ -47,7 +48,7 @@ edge-detection-assignment/
 │   └── ...
 │
 └── README.md         # This README file
-
+```
 ### Running the Code
 1. Open the Jupyter Notebook provided in the code/ directory if you're using Colab/Python platform, or run your code using your preferred development environment for other programming languages.
 2. Load a natural image from the images/ directory or use your own images.
