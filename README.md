@@ -1,60 +1,76 @@
-# Edge Detection Assignment README
+# Orientation-Aware Edge Detection
 
-This repository contains the code and results for the Edge Detection programming assignment. In this assignment, we aim to detect edges in natural images using convolution techniques inspired by Biological Vision.
+Computer vision notebook for extracting edge structure from grayscale images using Difference of Gaussians preprocessing, oriented convolution filters, and winner-take-all response aggregation.
+
+The project demonstrates a classical image-processing pipeline rather than a black-box model. It is useful for understanding how local contrast enhancement and orientation-selective filters can be combined to produce interpretable edge maps.
+
+## Overview
+
+The notebook implements the following workflow:
+
+1. Load input images and convert them to grayscale.
+2. Apply Difference of Gaussians filtering to enhance local intensity transitions.
+3. Convolve the processed image with four orientation-selective filters: 0, 45, 90, and 135 degrees.
+4. Aggregate filter responses using a winner-take-all strategy.
+5. Visualize intermediate responses and final edge maps for different image categories.
+
+## Repository Structure
+
+```text
+.
+├── orientation_aware_edge_detection.ipynb
+│                         # End-to-end experimentation notebook
+├── requirements.txt       # Python dependencies for local notebook execution
+├── LICENSE                # MIT license
+└── README.md              # Project documentation
+```
+
+## Method
+
+The pipeline combines two standard image-processing ideas:
+
+- Difference of Gaussians: smooths the image at two different scales and subtracts the results to emphasize edge-like transitions.
+- Oriented filtering: applies Sobel-style kernels in multiple directions so edge responses can be analyzed by orientation.
+
+The final response is produced by combining orientation channels and normalizing them against the strongest local response. This makes the output less dependent on any single filter direction.
 
 ## Getting Started
 
-Follow the steps below to set up and run the code for edge detection:
-
 ### Prerequisites
 
-- Python (recommended version: Python 3.x)
-- Jupyter Notebook (if using the provided Colab template)
-- Required libraries: NumPy, OpenCV (for image processing), Matplotlib (for visualization)
+- Python 3.9 or later
+- Jupyter Notebook or JupyterLab
 
-### Installing Dependencies
-
-You can install the required libraries using pip:
+### Install Dependencies
 
 ```bash
-pip install numpy opencv-python-headless matplotlib
+pip install -r requirements.txt
 ```
 
-### Clone the Repository
-Clone this repository to your local machine:
+### Run the Notebook
 
-```
-git clone https://github.com/yourusername/edge_detection.git
+```bash
+jupyter notebook orientation_aware_edge_detection.ipynb
 ```
 
-### Directory Structure
-The project directory structure is as follows:
+The notebook currently expects images to be available from a Google Drive path when run in Colab. For local execution, update the `img_dir` variable in the image-loading cell to point to a local image directory.
 
-edge-detection-assignment/
-```
-│
-├── code/             # Code for edge detection
-│   ├── edge_detection.ipynb
-│   └── ...
-│
-├── images/           # Natural images (add your own or use provided samples)
-│   ├── image1.jpg
-│   ├── image2.jpg
-│   └── ...
-│
-├── results/          # Output images and screenshots
-│   ├── result_image1.jpg
-│   ├── result_image2.jpg
-│   └── ...
-│
-└── README.md         # This README file
-```
-### Running the Code
-1. Open the Jupyter Notebook provided in the code/ directory if you're using Colab/Python platform, or run your code using your preferred development environment for other programming languages.
-2. Load a natural image from the images/ directory or use your own images.
-3. Convert the loaded image to grayscale.
-4. Define filters for edge detection at 0, 45, 90, and 135 degrees.
-5. Implement Winner-Take-All (WTA) and normalization as described in Module 02-02, Slide no 20.
-6. Produce the final edge detection output.
-7. Experiment with at least two images, one of a natural object and one of a man-made object.
-8. Save the resulting edge-detected images in the results/ directory.
+## Inputs
+
+Use a small set of natural and man-made object images for comparison. The implementation expects image files in a single directory and processes them into grayscale before applying the edge pipeline.
+
+Supported formats depend on OpenCV, but common formats such as `.jpg`, `.jpeg`, and `.png` are suitable.
+
+## Outputs
+
+The notebook visualizes:
+
+- grayscale input images
+- Difference of Gaussians response
+- orientation-specific edge responses
+- winner-take-all response map
+- final normalized edge map
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
